@@ -12,7 +12,7 @@ services:
     depends_on:
       - db
   db:
-    image: mysql:latest
+    image: mysql:5.7
     command: --innodb-use-native-aio=0
     container_name: db
     restart: always
@@ -22,7 +22,6 @@ services:
       - MYSQL_ROOT_PASSWORD=root
     networks:
       - node-network
-
   nginx:
     build:
       context: nginx
@@ -34,6 +33,7 @@ services:
       - node-network
     depends_on:
       - app
+
 networks:
   node-network:
     driver: bridge
